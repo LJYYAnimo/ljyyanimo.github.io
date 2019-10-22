@@ -1089,7 +1089,6 @@ blockquote {
 }
 #vcomment textarea {
   font-size: 0.7rem;
-  background: url("/img/comment_bg.png") 100% 100% no-repeat;
 }
 #vcomment .info {
   display: none;
