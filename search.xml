@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Mac/Linux下工具安装</title>
+      <link href="/2019/10/23/Mac-Linux%E4%B8%8B%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85/"/>
+      <url>/2019/10/23/Mac-Linux%E4%B8%8B%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Mac-Maven"><a href="#Mac-Maven" class="headerlink" title="Mac Maven"></a>Mac Maven</h1><ol><li>下载地址 <a href="https://maven.apache.org/download.cgi" target="_blank" rel="noopener">https://maven.apache.org/download.cgi</a>  </li><li>双击解压之后放到安装路径  </li><li>设置环境变量vim ~/.bash_profile</li></ol><ul><li>export M2_HOME=”/usr/local/apache-maven-3.6.0”  </li><li>export PATH=”$M2_HOME/bin:$PATH”</li></ul><ol start="4"><li>刷新配置文件source ~/.bash_profile</li><li>检查是否安装成功 mvn -v</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 安装 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Mac </tag>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Lambda表达式入门</title>
       <link href="/2019/10/23/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/"/>
       <url>/2019/10/23/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/</url>
