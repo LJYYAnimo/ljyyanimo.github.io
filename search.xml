@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>Mac/Linux下工具安装</title>
+      <title>Mac/Linux下工具安装(持续更新中~)</title>
       <link href="/2019/10/23/Mac-Linux%E4%B8%8B%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85/"/>
       <url>/2019/10/23/Mac-Linux%E4%B8%8B%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85/</url>
       
-        <content type="html"><![CDATA[<h1 id="Mac-Maven"><a href="#Mac-Maven" class="headerlink" title="Mac Maven"></a>Mac Maven</h1><ol><li>下载地址 <a href="https://maven.apache.org/download.cgi" target="_blank" rel="noopener">https://maven.apache.org/download.cgi</a>  </li><li>双击解压之后放到安装路径  </li><li>设置环境变量vim ~/.bash_profile</li></ol><ul><li>export M2_HOME=”/usr/local/apache-maven-3.6.0”  </li><li>export PATH=”$M2_HOME/bin:$PATH”</li></ul><ol start="4"><li>刷新配置文件source ~/.bash_profile</li><li>检查是否安装成功 mvn -v</li></ol>]]></content>
+        <content type="html"><![CDATA[<h1 id="Mac-Maven"><a href="#Mac-Maven" class="headerlink" title="Mac Maven"></a>Mac Maven</h1><ol><li>下载地址 <a href="https://maven.apache.org/download.cgi" target="_blank" rel="noopener">https://maven.apache.org/download.cgi</a>  </li><li>双击解压之后放到安装路径  </li><li>设置环境变量vim ~/.bash_profile</li></ol><ul><li>export M2_HOME=”/usr/local/apache-maven-3.6.0”  </li><li>export PATH=”$M2_HOME/bin:$PATH”</li></ul><ol start="4"><li>刷新配置文件source ~/.bash_profile</li><li>检查是否安装成功 mvn -v</li></ol><h1 id="Mac-Jmeter"><a href="#Mac-Jmeter" class="headerlink" title="Mac Jmeter"></a>Mac Jmeter</h1><ol><li>下载地址<a href="http://jmeter.apache.org/download_jmeter.cgi" target="_blank" rel="noopener">http://jmeter.apache.org/download_jmeter.cgi</a></li><li>双击解压之后放到安装路径</li><li>执行jmeter</li></ol><ul><li>cd /usr/local/apache-jmeter-5.1.1/bin</li><li>sh jmeter</li></ul><ol start="4"><li>设置中文</li></ol><ul><li>Options-&gt;Choose Language-&gt;Chinese（Simplified）</li></ul>]]></content>
       
       
       <categories>
