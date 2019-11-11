@@ -4,31 +4,6 @@
   
     
     <entry>
-      <title>ElasticSearchApi使用</title>
-      <link href="/ElasticSearchApi%E4%BD%BF%E7%94%A8.html"/>
-      <url>/ElasticSearchApi%E4%BD%BF%E7%94%A8.html</url>
-      
-        <content type="html"><![CDATA[<h1 id="创建索引库"><a href="#创建索引库" class="headerlink" title="创建索引库"></a>创建索引库</h1><h2 id="PostMan"><a href="#PostMan" class="headerlink" title="PostMan"></a>PostMan</h2><h2 id="Head"><a href="#Head" class="headerlink" title="Head"></a>Head</h2>]]></content>
-      
-      
-      <categories>
-          
-          <category> 搜索引擎 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Es </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Linux安装Docker</title>
       <link href="/Linux%E5%AE%89%E8%A3%85Docker.html"/>
       <url>/Linux%E5%AE%89%E8%A3%85Docker.html</url>
