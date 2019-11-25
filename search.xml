@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Maven私服搭建以及使用</title>
+      <link href="/Maven%E7%A7%81%E6%9C%8D%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8.html"/>
+      <url>/Maven%E7%A7%81%E6%9C%8D%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>nexus是一个强大的maven仓库管理器,它极大的简化了本地内部仓库的维护和外部仓库的访问.</p><p>nexus是一套开箱即用的系统不需要数据库,它使用文件系统加Lucene来组织数据</p><p>nexus使用ExtJS来开发界面,利用Restlet来提供完整的REST APIs,通过IDEA和Eclipse集成使用</p><p>nexus支持webDAV与LDAP安全身份认证.</p><p>nexus提供了强大的仓库管理功能,构件搜索功能,它基于REST,友好的UI是一个extjs的REST客户端,占用较少的内存,基于简单文件系统而非数据库.</p><h1 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h1><p>节省外网带宽。  </p><p>加速Maven构建。  </p><p>部署第三方构件。  </p><p>提高稳定性，增强控制。  </p><p>降低中央仓库的负荷。</p><p>控制和审计。 </p><p>建立本地内部公用仓库。<br><img alt data-src="/img/maven/16F59AB6-A109-4008-BCA6-89289B9DD456.png" class="lozad"></p><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1、先搜索Nexus3、或者到hub.docker.com搜索（基于界面显示有教程）</span><br><span class="line">docker search nexus3</span><br><span class="line">2、拉取镜像</span><br><span class="line">docker pull sonatype/nexus3</span><br><span class="line">3、启动镜像创建容器</span><br><span class="line">（Mac）在本地创建镜像挂载的目录 /usr/local/nexus-data 其次需要在docker配置挂载路径才能运行下面命令</span><br><span class="line">docker run -d -p 8081:8081 --name nexus3 -v /usr/local/nexus-data:/nexus-data --restart=always sonatype/nexus3</span><br><span class="line">注意:即使有错误也能创建成功,可通过docker ps -a查看是否创建错误的通过 docker rm -f 容器ID</span><br></pre></td></tr></table></figure><h1 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h1><blockquote><p>Maven私服启动的话大约要一分钟左右,其次我们命令中设置了自启就是说docker关闭重启Maven私服是自己启动的。</p></blockquote><p><img alt data-src="/img/maven/3CC6D686-C20F-45E2-B8A1-362DA3CF7419.png" class="lozad"><br>进入页面之后有个sign in按钮点击登录即可,默认用户名的话是admin。<br>其次如果看到此教程安装的话密码不是其他文章看到的admin123了。<br>密码的话可以在映射文件中查看/usr/local/nexus-data/admin.password,也可以在容器中通过此命令:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it 容器id bash</span><br><span class="line">cd nexus-data</span><br><span class="line">cat admin.password</span><br></pre></td></tr></table></figure><p>登录之后有4个设置步骤重置密码,其他步骤可翻译自行设置。</p><h1 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h1><p>登录之后搜索框左侧会有个设置的图标点击进去之后点开repositories。<br><img alt data-src="/img/maven/AEE5D9C4-AD92-48D7-ADFD-2D810C4CAEE0.png" class="lozad"><br>点击Create Repository 选择 maven2（hosted）。<br><img alt data-src="/img/maven/FC789497-A8CF-4670-8019-D96EFEBD55ED.png" class="lozad"><br>创建之后跳转到列表点击自己创建的仓库可看详情，其中url属性是仓库地址到时候在maven中使用。<br><img alt data-src="/img/maven/BAC90E5C-BBAF-4FB9-8F4D-5AF459F30F9B.png" class="lozad">  </p><h1 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h1><p>设置 -&gt; Security -&gt; Users -&gt; Create local user<br>其次里面创建的时候有角色属性需要设置全选即可。</p><h1 id="项目使用"><a href="#项目使用" class="headerlink" title="项目使用"></a>项目使用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cmd 运行 mvn -version</span><br><span class="line">Maven home: /usr/local/apache-maven-3.6.0</span><br><span class="line">Java version: 1.8.0_191, vendor: Oracle Corporation, runtime: /Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/jre</span><br><span class="line">Default locale: zh_CN, platform encoding: UTF-8</span><br><span class="line">OS name: &quot;mac os x&quot;, version: &quot;10.15&quot;, arch: &quot;x86_64&quot;, family: &quot;mac&quot;</span><br></pre></td></tr></table></figure><p>Maven home 则是maven路径我们进入目录之后到conf打开settings.xml找到<servers>这个标签。<br><img alt data-src="/img/maven/B4761DFB-D09C-4FF9-AB04-C7305F8B55F3.png" class="lozad"><br>里面的参数就是创建用户时设置的。<br>这里配置好之后创建个两个项目测试一下一个打包一个使用。</servers></p><h2 id="发布Jar到私服"><a href="#发布Jar到私服" class="headerlink" title="发布Jar到私服"></a>发布Jar到私服</h2><p><img alt data-src="/img/maven/30DDE636-D1BC-4370-B139-C71DE9879B76.png" class="lozad"><br>图中方框地方一定要特别注意因为我们创建的仓库是RELEASE版本。<br>发布的Jar可以在http://端口:ip/#browse/search/maven中查看。</p><h2 id="使用打包的Jar"><a href="#使用打包的Jar" class="headerlink" title="使用打包的Jar"></a>使用打包的Jar</h2><p><img alt data-src="/img/maven/592672BF-3731-4888-A6CB-7BE08D2FB110.png" class="lozad"><br>这里我们使用了发布到私服的Jar由于没有指定私服仓库默认是从本地再到中央仓库进行查找，由于发布的时候会克隆到本地所以我先把本地的删除了才出现这效果。</p><pre><code class="text"># 在需要使用jar的项目中的pom配置 &lt;dependencies&gt;        &lt;dependency&gt;            &lt;groupId&gt;com.animo&lt;/groupId&gt;            &lt;artifactId&gt;utils&lt;/artifactId&gt;            &lt;version&gt;1.0-RELEASE&lt;/version&gt;        &lt;/dependency&gt;    &lt;/dependencies&gt;    &lt;distributionManagement&gt;        &lt;repository&gt;            &lt;!--此名称要和maven路径中的conf/settings.xml中设置的ID一致 --&gt;            &lt;id&gt;animo&lt;/id&gt;            &lt;url&gt;http://localhost:8081/repository/animo-release/&lt;/url&gt;        &lt;/repository&gt;    &lt;/distributionManagement&gt;</code></pre><p><img alt data-src="/img/maven/7CE01415-F3E4-4E8B-912E-49CD9BF7A741.png" class="lozad">  </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Maven </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Docker </tag>
+            
+            <tag> Maven </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Pi NetWork</title>
       <link href="/Pi-NetWork.html"/>
       <url>/Pi-NetWork.html</url>
@@ -349,9 +376,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Mac </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
       
