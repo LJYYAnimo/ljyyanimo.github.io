@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>Linux安装kibana</title>
+      <link href="/Linux%E5%AE%89%E8%A3%85kibana.html"/>
+      <url>/Linux%E5%AE%89%E8%A3%85kibana.html</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Kibana是一个为Elasticsearch平台分析和可视化的开源平台，使用Kibana能够搜索、展示存储在Elasticsearch中的索引数据。使用它可以很方便用图表、表格、地图展示和分析数据。Kibana能够轻松处理大量数据，通过浏览器接口能够轻松的创建和分享仪表盘，通过改变Elasticsearch查询时间，可以完成动态仪表盘。</p></blockquote><h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://artifacts.elastic.co/downloads/kibana/kibana-7.5.1-linux-x86_64.tar.gz</span><br></pre></td></tr></table></figure><h1 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar vxf kibana-7.5.1-linux-x86_64.tar.gz</span><br></pre></td></tr></table></figure><h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p>1、基础配置(config/kibana.yml),其他配置的话文件里都有说明可自行翻译。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server.port: 5601</span><br><span class="line">server.host: &quot;0.0.0.0&quot;</span><br><span class="line">elasticsearch.hosts: &quot;http://localhost:9200&quot;</span><br><span class="line">kibana.index: &quot;.kibana&quot;</span><br></pre></td></tr></table></figure><h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><p>1、脚本(bin目录创建/路径按需修改)</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup sh /usr/app/kibana-7.5.1-linux-x86_64/bin/kibana --allow-root &gt; /usr/app/logs/kibana-7.5.1/logs/kibana.out &amp;</span><br></pre></td></tr></table></figure><p>2、执行权限</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x kibanaStart.sh</span><br></pre></td></tr></table></figure><p>3、启动脚本/访问</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./kibanaStart.sh </span><br><span class="line">http://localhost:5601</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> ES </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux安装Logstash</title>
+      <link href="/Linux%E5%AE%89%E8%A3%85Logstash.html"/>
+      <url>/Linux%E5%AE%89%E8%A3%85Logstash.html</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Logstash作为ELK中的一员其主要作用收集日志、处理日志、转发。</p></blockquote><h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>1、可更改版本号来实现各版本号的下载</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://artifacts.elastic.co/downloads/logstash/logstash-7.5.1.tar.gz</span><br></pre></td></tr></table></figure><p>2、项目主页</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.elastic.co/cn/downloads/logstash</span><br></pre></td></tr></table></figure><h1 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar vxf logstash-7.5.1.tar.gz</span><br></pre></td></tr></table></figure><h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p>1、在logstash目录下创建conf.d文件夹</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir conf.d</span><br></pre></td></tr></table></figure><p>2、在conf.d目录下创建config1.conf文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch config1.conf</span><br></pre></td></tr></table></figure><p>3、文件内容配置写入,工作流程（采集 -&gt; 过滤 -&gt; 写出）。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">input&#123;</span><br><span class="line">    # 采集本地文件</span><br><span class="line">    file&#123;</span><br><span class="line">        path=&gt; &quot;/root/logs/*.log&quot;</span><br><span class="line">        # 采集策略 从什么位置采集</span><br><span class="line">        start_position =&gt; beginning</span><br><span class="line">        # 来源名称 可选</span><br><span class="line">        add_field =&gt; &#123;&quot;form&quot; =&gt; &quot;localfile&quot;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"># 采集过来的数据以什么方式过滤</span><br><span class="line">filter&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"># 写入到什么地方去</span><br><span class="line">output&#123;</span><br><span class="line">    elasticsearch&#123;</span><br><span class="line">        hosts =&gt; &quot;localhost:9200&quot;</span><br><span class="line">        index =&gt; &quot;mylog&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    stdout&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><p>1、编写sh脚本(目录根据自己的修改)</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup sh /usr/app/logstash-7.5.1/bin/logstash -f /usr/app/logstash-7.5.1/conf.d/ --config.reload.automatic &gt;&gt; /usr/app/logs/logstash-7.5.1/logs/logstash.log &amp;</span><br></pre></td></tr></table></figure><p>2、加权限</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x logstashStart.sh</span><br></pre></td></tr></table></figure><p>3、启动</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./logstashStart.sh</span><br></pre></td></tr></table></figure><h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>1、其次先去Es创建索引库,这里采用ElasticSearch-Head创建可查看本博客之前教程 <a href="http://www.ljyanimo.com/Docker%E5%AE%89%E8%A3%85ElasticSearch.html">http://www.ljyanimo.com/Docker%E5%AE%89%E8%A3%85ElasticSearch.html</a></p><p>2、大家可以根据上面教程在本地装一个通过node.js构建一下即可。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">索引库名称为配置文件中填写的mylog</span><br></pre></td></tr></table></figure><p>3、之前配置文件写入的地址是/root/logs/*.log的所有日志。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch /root/logs/test.log</span><br></pre></td></tr></table></figure><p>4、测试结果。<br><img alt data-src="/img/linux/logstash.png" class="lozad">  </p><blockquote><p>留下猜测结论,conf.d文件下的所有配置文件都会被logstash所读取并且执行好处就是多种通道单独配置,其次可以动手试试filter和修改采集策略,也可以从数据库采集到es。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> ES </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Linux安装IK分词器</title>
       <link href="/Linux%E5%AE%89%E8%A3%85IK%E5%88%86%E8%AF%8D%E5%99%A8.html"/>
       <url>/Linux%E5%AE%89%E8%A3%85IK%E5%88%86%E8%AF%8D%E5%99%A8.html</url>
